@@ -7,12 +7,12 @@ const questions = require('./lib/questions');
 
 
 inquirer.prompt(questions).then(responseObj => {
-  const queryUrl = `https://api.github.com/users/${responseObj.username}/repos?per_page=100`;
+  const queryUrl = `https://api.github.com/search/users?q=${responseObj.username}`;
   
   axios.get(queryUrl)
        .then(function(res) {
-      
-      const markdownData = { ...responseObj,avatar_url  };
+ 
+      const markdownData = { ...responseObj, avatar_url: res.data.items[0].avatar_url  };
 
       
       const finishedMarkdown = generateMarkdown(markdownData);
