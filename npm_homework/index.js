@@ -10,15 +10,15 @@ inquirer.prompt(questions).then(responseObj => {
   const queryUrl = `https://api.github.com/search/users?q=${responseObj.username}`;
   
   axios.get(queryUrl)
-       .then(function(res) {
+       .then(({ data })=>{
  
-      const markdownData = { ...responseObj, avatar_url: res.data.items[0].avatar_url  };
+      const markdownData = { data, ...responseObj };
 
       
       const finishedMarkdown = generateMarkdown(markdownData);
 
       
-      fs.writeFile("profile.md", finishedMarkdown, err => {
+      fs.appendFile('README.md', finishedMarkdown, err => {
         if (err) {
           return console.log(err);
         }
