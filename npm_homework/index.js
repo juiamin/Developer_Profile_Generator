@@ -18,7 +18,7 @@ inquirer.prompt(questions).then(responseObj => {
       const finishedMarkdown = generateMarkdown(markdownData);
 
       
-      fs.writeFile('./profile.md', finishedMarkdown, err => {
+      fs.writeFile("profile.md", finishedMarkdown, err => {
         if (err) {
           return console.log(err);
         }
