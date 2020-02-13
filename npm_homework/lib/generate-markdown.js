@@ -1,10 +1,11 @@
-const generateMarkdown = profileData => {
-  console.log(profileData);
+const generateMarkdown = (profileData) => {
+  console.log(profileData.data.items[0]);
+  
   return `
 # GitHub UserName
 UserName: ${profileData.username}
 
-![GitHub image](${profileData.avatar_url})
+![GitHub image](${profileData.data.items[0].avatar_url})
 
 ## Info
 Email: [${profileData.email}](mailto:${profileData.email})
